@@ -6,9 +6,11 @@ public interface EmployeeRepository {
 
     void saveEmployee(Employee employee);
 
-    void findEmployee(int id);
+    Employee findEmployee(int id);
 
     void deleteEmployee(int id);
+
+    Employee[] getAllEmployees();
 
 
 }

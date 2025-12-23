@@ -2,10 +2,10 @@ package com.ust.empapp.repository;
 
 import com.ust.empapp.model.Employee;
 
-public class EmployeeRepositoryImpl{
+public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     Employee []employees = new Employee[10];
-    int current = 0;
+    public static int current = 0;
 
     public void saveEmployee(Employee employee) {
 
@@ -31,9 +31,14 @@ public class EmployeeRepositoryImpl{
         for (int i = 0; i < current ; i++) {
             var emp = employees[i];
             if (emp!=null && emp.getEmployeeId()==id){
-                emp = null;
+                employees[i] = null;
             }
         }
 
+    }
+
+    @Override
+    public Employee[] getAllEmployees() {
+        return employees;
     }
 }
