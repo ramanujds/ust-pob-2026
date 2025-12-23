@@ -4,6 +4,8 @@ import com.ust.empapp.model.Employee;
 
 public class EmployeeRepositoryImpl{
 
+    Employee []employees = new Employee[10];
+
     public void saveEmployee(Employee employee) {
 
     }
