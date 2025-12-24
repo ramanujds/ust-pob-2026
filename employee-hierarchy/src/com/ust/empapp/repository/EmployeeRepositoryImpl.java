@@ -2,43 +2,46 @@ package com.ust.empapp.repository;
 
 import com.ust.empapp.model.Employee;
 
-public class EmployeeRepositoryImpl implements EmployeeRepository{
+import java.util.ArrayList;
+import java.util.List;
 
-    Employee []employees = new Employee[10];
-    public static int current = 0;
+public class EmployeeRepositoryImpl implements EmployeeRepository {
+
+
+    List<Employee> employees = new ArrayList<>();
 
     public void saveEmployee(Employee employee) {
 
-        if (current<employees.length)
-            employees[current++]=employee;
-
+        employees.add(employee);
     }
 
     public Employee findEmployee(int id) {
 
-        for (int i = 0; i < current ; i++) {
-            var emp = employees[i];
-            if (emp!=null && emp.getEmployeeId()==id){
+        for (Employee emp : employees) {
+            if (emp.getEmployeeId() == id) {
                 return emp;
             }
         }
+
         return null;
+
+//        return employees.stream().filter(e->e.getEmployeeId()==id).findFirst().orElse(null);
+
 
     }
 
     public void deleteEmployee(int id) {
 
-        for (int i = 0; i < current ; i++) {
-            var emp = employees[i];
-            if (emp!=null && emp.getEmployeeId()==id){
-                employees[i] = null;
-            }
-        }
+        Employee emp = findEmployee(id);
+        employees.remove(emp);
+
+//        employees.removeIf(e->e.getEmployeeId()==id);
+
 
     }
 
-    @Override
-    public Employee[] getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         return employees;
     }
+
 }

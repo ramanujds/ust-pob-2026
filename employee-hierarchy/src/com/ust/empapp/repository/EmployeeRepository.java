@@ -2,6 +2,8 @@ package com.ust.empapp.repository;
 
 import com.ust.empapp.model.Employee;
 
+import java.util.List;
+
 public interface EmployeeRepository {
 
     void saveEmployee(Employee employee);
@@ -10,7 +12,16 @@ public interface EmployeeRepository {
 
     void deleteEmployee(int id);
 
-    Employee[] getAllEmployees();
+    List<Employee> getAllEmployees();
+
+    Employee findEmployeeByName(String name);
+
+    List<Employee> findEmployeeInSalaryRange(double min, double max);
+
+    List<Employee> sortBySalary();
+
+    Employee findHighestPaidEmployee();
+
 
 
 }
