@@ -1,6 +1,7 @@
 package com.ust.empapp;
 
 
+import com.ust.empapp.exception.EmployeeNotFoundException;
 import com.ust.empapp.model.Developer;
 import com.ust.empapp.model.Employee;
 import com.ust.empapp.model.Manager;
@@ -17,15 +18,18 @@ public class Main {
         employeeRepo.saveEmployee(employee1);
         employeeRepo.saveEmployee(employee2);
 
-        employeeRepo.deleteEmployee(101);
-
-        var emps = employeeRepo.getAllEmployees();
-
-        for(int i=0; i<EmployeeRepositoryImpl.current; i++){
-            if (emps[i]!=null) {
-                emps[i].displayDetails();
-            }
+        try {
+            var emp = employeeRepo.findEmployee(100);
+            emp.displayDetails();
         }
+        catch (EmployeeNotFoundException ex){
+            System.err.println(ex.getMessage());
+        }
+
+
+
+
+
 
 
 

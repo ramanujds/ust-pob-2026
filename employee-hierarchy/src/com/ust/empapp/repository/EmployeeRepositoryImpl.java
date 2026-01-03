@@ -1,5 +1,6 @@
 package com.ust.empapp.repository;
 
+import com.ust.empapp.exception.EmployeeNotFoundException;
 import com.ust.empapp.model.Employee;
 
 import java.util.*;
@@ -22,7 +23,7 @@ class EmployeeCompareBySalary implements Comparator<Employee> {
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 
-    List<Employee> employees = new ArrayList<>();
+    List<Employee> employees = new LinkedList<>();
 
     public void saveEmployee(Employee employee) {
 
@@ -37,7 +38,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             }
         }
 
-        return null;
+        throw new EmployeeNotFoundException("Employee with id : "+id+ " Not Found");
+
 
 //        return employees.stream().filter(e->e.getEmployeeId()==id).findFirst().orElse(null);
 
