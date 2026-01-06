@@ -6,52 +6,39 @@ import com.ust.empapp.model.Employee;
 import java.util.*;
 
 
-class EmployeeCompareByName implements Comparator<Employee> {
-
-    public int compare(Employee e1, Employee e2) {
-        return e1.getName().compareTo(e2.getName());
-    }
-}
-
-class EmployeeCompareBySalary implements Comparator<Employee> {
-
-    public int compare(Employee e1, Employee e2) {
-        return Double.compare(e1.getSalary(), e2.getSalary());
-    }
-}
-
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 
     List<Employee> employees = new LinkedList<>();
 
     public void saveEmployee(Employee employee) {
-
         employees.add(employee);
     }
 
     public Employee findEmployee(int id) {
 
-        for (Employee emp : employees) {
-            if (emp.getEmployeeId() == id) {
-                return emp;
-            }
-        }
+//        for (Employee emp : employees) {
+//            if (emp.getEmployeeId() == id) {
+//                return emp;
+//            }
+//        }
+//
+//        throw new EmployeeNotFoundException("Employee with id : "+id+ " Not Found");
 
-        throw new EmployeeNotFoundException("Employee with id : "+id+ " Not Found");
 
-
-//        return employees.stream().filter(e->e.getEmployeeId()==id).findFirst().orElse(null);
+     return employees.stream().filter(e->e.getEmployeeId()==id)
+                                .findFirst()
+                                .orElseThrow(()->new EmployeeNotFoundException("Employee with id : "+id+ " Not Found"));
 
 
     }
 
     public void deleteEmployee(int id) {
 
-        Employee emp = findEmployee(id);
-        employees.remove(emp);
+//        Employee emp = findEmployee(id);
+//        employees.remove(emp);
 
-//        employees.removeIf(e->e.getEmployeeId()==id);
+        employees.removeIf(e->e.getEmployeeId()==id);
 
 
     }
@@ -61,13 +48,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     public Employee findEmployeeByName(String name) {
-        for (Employee emp : employees) {
-            if (emp.getName().equalsIgnoreCase(name)) {
-                return emp;
-            }
-        }
+//        for (Employee emp : employees) {
+//            if (emp.getName().equalsIgnoreCase(name)) {
+//                return emp;
+//            }
+//        }
+//
+//        return null;
 
-        return null;
+        return employees.stream()
+                .filter(e->e.getName().equalsIgnoreCase(name)).findFirst()
+                .orElseThrow(()->new EmployeeNotFoundException("Employee with name : "+name+ " Not Found"));
     }
 
     public List<Employee> findEmployeeInSalaryRange(double min, double max) {
@@ -81,30 +72,27 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     public List<Employee> sortBySalary() {
-        Comparator<Employee> comp = new EmployeeCompareBySalary();
-        employees.sort(comp);
-        return employees;
+        return employees.stream().sorted((e1,e2)->Double.compare(e1.getSalary(), e2.getSalary())).toList();
     }
 
     public List<Employee> sortByName() {
-        Comparator<Employee> comp = new EmployeeCompareByName();
-        employees.sort(comp);
-        return employees;
+        return employees.stream().sorted((e1,e2)->e1.getName().compareToIgnoreCase(e2.getName())).toList();
     }
 
     public Employee findHighestPaidEmployee() {
-       // Comparator<Employee> comp = new EmployeeCompareBySalary();
-       //  return employees.stream().max(comp).orElse(null);
-        Employee high = null;
-        if (!employees.isEmpty()) {
-            high = employees.get(0);
-            for(Employee emp : employees) {
-                if(emp.getSalary() > high.getSalary()) {
-                    high = emp;
-                }
-            }
-        }
-        return high;
+//       // Comparator<Employee> comp = new EmployeeCompareBySalary();
+//       //  return employees.stream().max(comp).orElse(null);
+//        Employee high = null;
+//        if (!employees.isEmpty()) {
+//            high = employees.get(0);
+//            for(Employee emp : employees) {
+//                if(emp.getSalary() > high.getSalary()) {
+//                    high = emp;
+//                }
+//            }
+//        }
+//        return high;
+        return employees.stream().max((e1,e2)->Double.compare(e1.getSalary(), e2.getSalary())).get();
 
     }
 

@@ -27,6 +27,12 @@ public class Main {
         }
 
 
+        // Output
+        // All Employees sorted by name
+        // Highest paid employee
+        // Max Sal | Min Sal | Avg Sal
+
+        // Display the content of the file at the end
 
 
 
