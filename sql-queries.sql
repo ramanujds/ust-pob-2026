@@ -20,7 +20,7 @@ drop table employee;
 insert into employee values(1, 'Harsh',56000);
 insert into employee values(2, 'Javed',61000);
 insert into employee values(3, 'Rohan',78000);
-insert into employee values(4, 'Karan',45000);
+insert into employee values(4, 'Karan',45000, 103, 'Mumbai');
 
 update employee set salary=50000 where id=4;
 
@@ -54,10 +54,31 @@ set autocommit=true;
 
 
 -- add new columns dept_id numeric(3) location varchar(100)
+
+alter table employee add(dept_id numeric(3),location varchar(100));
+
 -- update to insert data for new columns
+update  employee set dept_id=101 where id=1;
+update  employee set dept_id=102 where id=2;
+update  employee set dept_id=101 where id=3;
+update  employee set dept_id=105 where id=4;
+
+update employee set location="Bengaluru" where id in (1,3);
+update employee set location="Delhi" where id in (2);
+update employee set location="Mumbai" where id in (4);
 
 -- create a new table dept with id, name, location 
--- add some data (10, 'IT', 'Bengaluru')
+create table dept (id numeric(3) primary key , name varchar(50), location varchar(100));
+insert into dept values(101,'IT','Bangaluru');
+insert into dept values(102,'Sales','Mumbai');
+insert into dept values(103,'Accounts','Delhi');
+insert into dept values(104,'HR','Bangaluru');
+
+alter table dept modify id numeric(3);
+
+-- add a foriegn key
+
+alter table employee add foreign key(dept_id) references dept(id);
 
 
 
