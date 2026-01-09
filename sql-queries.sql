@@ -80,7 +80,35 @@ alter table dept modify id numeric(3);
 
 alter table employee add foreign key(dept_id) references dept(id);
 
+-- JOINS
+
+-- INNER JOIN
+
+select e.*,d.name as 'dept name' from employee e join dept d on e.dept_id=d.id where d.name='IT';
+
+-- Outer Join
+-- Left/Right/Full Join
+
+select e.*,d.* from employee e left join dept d on e.dept_id=d.id;
+
+-- find dept with no employee
+
+SELECT d.id, d.name
+FROM dept d
+LEFT JOIN employee e
+ON d.id = e.dept_id
+WHERE e.id IS NULL;
+
+-- find the max, min, avg salaries
+
+select max(salary) as 'Highest Salary',min(salary) as 'Lowest Salary', avg(salary) as 'Average Salary' from employee; 
+
+-- find highest paid employee
 
 
+-- highest salary in each location
+
+select location, max(salary) as 'Highest Salary' from employee group by location; 
 
 
+ 
