@@ -2,6 +2,7 @@ package com.ust.ecomapp.api;
 
 import com.ust.ecomapp.model.Product;
 import com.ust.ecomapp.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,11 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-    private ProductService service = new ProductService();
+    private ProductService service;
+
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Product> getAllProducts() {

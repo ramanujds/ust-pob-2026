@@ -1,10 +1,14 @@
 package com.ust.ecomapp.repository;
 
 import com.ust.ecomapp.model.Product;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProductRepository {
 
     List<Product> products = new ArrayList<>();
