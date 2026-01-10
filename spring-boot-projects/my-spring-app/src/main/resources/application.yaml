@@ -1,3 +1,8 @@
 spring:
   application:
     name: my-spring-app
+
+server:
+  port: 8000
+
+## server.port=8000
