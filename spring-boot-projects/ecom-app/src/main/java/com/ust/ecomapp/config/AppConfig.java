@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class AppConfig {
 
-    @Bean
+    @Bean("repo2")
     @Primary
     ProductRepository getProductRepository(){
         return new ProductRepository();

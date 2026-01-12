@@ -1,6 +1,7 @@
 package com.ust.ecomapp.repository;
 
 import com.ust.ecomapp.model.Product;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -8,10 +9,16 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Repository("repo1")
 public class ProductRepository {
 
-    List<Product> products = new ArrayList<>();
+    List<Product> products;
+
+    @PostConstruct
+    void init(){
+        products = new ArrayList<>();
+        products.add(new Product(1,"iPhone 17",83000));
+    }
 
     public Product saveProduct(Product product){
         products.add(product);

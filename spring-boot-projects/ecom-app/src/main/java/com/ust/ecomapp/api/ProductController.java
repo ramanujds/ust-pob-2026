@@ -11,19 +11,17 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
+    @Autowired
     private ProductService service;
-
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<Product> getAllProducts() {
         return service.getProducts();
     }
 
-    @GetMapping("/{id}")
-    public Product getProduct(@PathVariable long id) {
+
+    @GetMapping("/search")
+    public Product getProduct(@RequestParam("id") long id) {
         return service.getProductById(id);
     }
 
@@ -36,5 +34,9 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product){
         return service.saveProduct(product);
     }
+
+    // GET : get product by name
+    // GET : get product in price range
+
 
 }

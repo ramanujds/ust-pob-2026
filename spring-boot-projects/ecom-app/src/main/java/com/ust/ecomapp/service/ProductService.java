@@ -3,6 +3,7 @@ package com.ust.ecomapp.service;
 import com.ust.ecomapp.model.Product;
 import com.ust.ecomapp.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class ProductService {
 
     private ProductRepository productRepo;
 
-    public ProductService(ProductRepository productRepo) {
+    public ProductService(@Qualifier("repo1") ProductRepository productRepo) {
         this.productRepo = productRepo;
     }
 
@@ -33,5 +34,8 @@ public class ProductService {
     public void deleteProduct(long id) {
         productRepo.deleteProduct(id);
     }
+
+
+
 
 }
