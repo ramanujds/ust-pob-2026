@@ -1,2 +1,14 @@
 server:
   port: 8000
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ust_db
+    username: root
+    password: password
+
+  jpa:
+    show-sql: true  # Optional: Show SQL statements in the console
+    hibernate:
+      ddl-auto: update
+
+

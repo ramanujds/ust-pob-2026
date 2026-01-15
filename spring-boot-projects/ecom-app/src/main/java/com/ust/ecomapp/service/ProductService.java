@@ -14,25 +14,24 @@ public class ProductService {
 
     private ProductRepository productRepo;
 
-    public ProductService(@Qualifier("repo1") ProductRepository productRepo) {
+    public ProductService(ProductRepository productRepo) {
         this.productRepo = productRepo;
     }
 
     public Product saveProduct(Product product) {
-        return productRepo.saveProduct(product);
+        return productRepo.save(product);
     }
 
     public List<Product> getProducts() {
-        return productRepo.getProducts();
+        return productRepo.findAll();
     }
 
     public Product getProductById(long id) {
-
-        return productRepo.getProductById(id);
+        return productRepo.findById(id).get();
     }
 
     public void deleteProduct(long id) {
-        productRepo.deleteProduct(id);
+        productRepo.deleteById(id);
     }
 
 
