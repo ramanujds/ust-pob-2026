@@ -35,6 +35,19 @@ public class ProductService {
     }
 
 
+    public List<Product> findProductByName(String name) {
+        return productRepo.findByNameContaining(name);
+    }
+
+    public List<Product> findProductByName(String name, double price) {
+        return productRepo.findByNameContainingAndPriceLessThan(name,price);
+    }
+
+    public List<Product> findProductInPriceRange(double min, double max) {
+        return productRepo.findByPriceRange(min,max);
+    }
+
+
 
 
 }

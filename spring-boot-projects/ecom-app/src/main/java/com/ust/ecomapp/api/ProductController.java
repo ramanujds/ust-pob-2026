@@ -20,9 +20,18 @@ public class ProductController {
     }
 
 
-    @GetMapping("/search")
-    public Product getProduct(@RequestParam("id") long id) {
+    @GetMapping("/{id}")
+    public Product getProduct(@PathVariable("id") long id) {
         return service.getProductById(id);
+    }
+
+    @GetMapping("/search")
+    public List<Product> findProduct(@RequestParam("name") String name,
+                                     @RequestParam(value = "price", required = false) Double price) {
+        if (price != null){
+            return service.findProductByName(name,price);
+        }
+        return service.findProductByName(name);
     }
 
     @DeleteMapping("/{id}")
@@ -37,6 +46,15 @@ public class ProductController {
 
     // GET : get product by name
     // GET : get product in price range
+
+    @GetMapping("/price")
+    List<Product> findProductInPriceRange(@RequestParam("min") double min,
+                                          @RequestParam("max") double max){
+        return service.findProductInPriceRange(min,max);
+    }
+
+    // product with name and max price
+
 
 
 }
