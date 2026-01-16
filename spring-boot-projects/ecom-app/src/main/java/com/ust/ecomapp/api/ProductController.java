@@ -3,6 +3,8 @@ package com.ust.ecomapp.api;
 import com.ust.ecomapp.model.Product;
 import com.ust.ecomapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,13 +37,21 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable long id) {
         service.deleteProduct(id);
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product){
-        return service.saveProduct(product);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+        Product body =  service.saveProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(body);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Product updateProduct(@PathVariable long id, @RequestBody Product product){
+        return service.updateProduct(id, product);
     }
 
     // GET : get product by name
@@ -53,7 +63,8 @@ public class ProductController {
         return service.findProductInPriceRange(min,max);
     }
 
-    // product with name and max price
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.ust.ecomapp.service;
 
+import com.ust.ecomapp.exception.ResourceNotFoundException;
 import com.ust.ecomapp.model.Product;
 import com.ust.ecomapp.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,23 @@ public class ProductService {
         return productRepo.save(product);
     }
 
+    public Product updateProduct(long id, Product product) {
+        Product existing = getProductById(id);
+        if (product.getName() != null){
+            existing.setName(product.getName());
+        }
+        if (product.getPrice() != 0){
+            existing.setPrice(product.getPrice());
+        }
+        return productRepo.save(existing);
+    }
+
     public List<Product> getProducts() {
         return productRepo.findAll();
     }
 
     public Product getProductById(long id) {
-        return productRepo.findById(id).get();
+        return productRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Product with Id:"+id+" Not found"));
     }
 
     public void deleteProduct(long id) {
