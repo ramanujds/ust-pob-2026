@@ -17,6 +17,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // product with name and max price
 
+
+    // JPQL
+    // Native SQL Query
+    @Query(value = "select * from product_data where name like :name% and price<:price",nativeQuery = true)
     List<Product> findByNameContainingAndPriceLessThan(String name, double price);
 
 

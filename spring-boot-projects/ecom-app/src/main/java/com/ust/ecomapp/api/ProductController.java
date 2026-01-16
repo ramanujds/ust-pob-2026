@@ -2,6 +2,7 @@ package com.ust.ecomapp.api;
 
 import com.ust.ecomapp.model.Product;
 import com.ust.ecomapp.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+    public ResponseEntity<Product> addProduct(@RequestBody @Valid Product product){
         Product body =  service.saveProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(body);
     }

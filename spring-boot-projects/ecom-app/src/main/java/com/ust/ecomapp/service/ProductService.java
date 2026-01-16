@@ -20,6 +20,9 @@ public class ProductService {
     }
 
     public Product saveProduct(Product product) {
+        if (productRepo.existsById(product.getId())){
+            throw new RuntimeException("...");
+        }
         return productRepo.save(product);
     }
 

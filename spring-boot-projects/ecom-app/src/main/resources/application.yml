@@ -5,10 +5,14 @@ spring:
     url: jdbc:mysql://localhost:3306/ust_db
     username: root
     password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     show-sql: true  # Optional: Show SQL statements in the console
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
 
 
