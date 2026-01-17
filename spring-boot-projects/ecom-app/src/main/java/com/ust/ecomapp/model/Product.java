@@ -24,4 +24,5 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+
 }
