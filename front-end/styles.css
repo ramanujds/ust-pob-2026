@@ -1,0 +1,32 @@
+ h1 {
+            color: #293b4c;
+            text-align: center;
+        }
+        p{
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555555;
+            text-align: center;
+        }
+        p:hover {
+            background-color: burlywood;
+            font-size: large;
+        }
+        #text-error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ecom App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+            <h1>Welcome to Ecom App</h1>
+            <p>Add Products</p>
+            <form onsubmit="readInput(event)">
+                <div>
+                    <label for="name">Product Name</label>
+                    <input type="text" name="name" id="name" placeholder="Product Name">
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <input type="number" name="price" id="price">
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="ELECTRONICS">Electronics</option>
+                        <option value="CLOTHIG">Clothing</option>
+                        <option value="GROCERY">Grocery</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">Add Product</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <h2>Product List</h2>
+            <button class="btn btn-dark" onclick="fetchProducts()">Refresh Products</button>
+            <div id="product-list">
+                <!-- Product items will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+</html>
